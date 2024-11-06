@@ -22,7 +22,7 @@ const Pets = () => {
             raca: 'bird',
             bio: 'passaro'
         }
-])
+    ])
     return (
         <View>
             <View style={styles.flex}>
