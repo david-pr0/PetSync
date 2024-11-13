@@ -9,8 +9,11 @@ const Header = () => {
                     <Image source={require('../../../../assets/arrow.png')} style={styles.image}/>
                 </View>
                 <Text style={styles.title}>
-                    Perfil
+                    Tarefa
                 </Text>
+            </View>
+            <View>
+                <Image source={require('../../../../assets/menu.webp')} style={styles.image}/>
             </View>
         </View>
     )

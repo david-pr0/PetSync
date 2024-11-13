@@ -1,25 +1,27 @@
-import { View, Image, StyleSheet, Text } from "react-native"
+import { useEffect, useState } from "react";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 const Header = () => {
+    const [img, setImg] = useState("https://via.placeholder.com/40x40");
+
+    useEffect(() => {
+        const imagem = require('../../../../assets/user.png');
+        setImg(imagem);
+    }, []);
+
     return (
         <View style={styles.container}>
-            <Image source={{uri: "https://via.placeholder.com/40x40"}} style={styles.image}/>
-            <View style={styles.options}>
-                <Image source={{uri: "https://via.placeholder.com/40x40"}} style={styles.image}/>
-                <Image source={{uri: "https://via.placeholder.com/40x40"}} style={styles.image}/>
-            </View>
+            <TouchableOpacity>
+                <Image source={{uri: img}} style={styles.image} />
+            </TouchableOpacity>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-    },
-    options: {
-        flexDirection: 'row',
-        gap: 25,
     },
     image: {
         width: 40,
@@ -28,4 +30,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Header
+export default Header;
