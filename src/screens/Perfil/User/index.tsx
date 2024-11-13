@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { View, Image, Text, StyleSheet, Button } from "react-native"
+import { View, Image, Text, StyleSheet, Button, TouchableOpacity } from "react-native"
 
 const User = () => {
     const [img, setImg] = useState("https://via.placeholder.com/150x150")
@@ -18,9 +18,11 @@ const User = () => {
                     <Text style={styles.email}>{user.email}</Text>
                 </View>
                 <View>
-                    <Text style={styles.button}>
-                        Sair
-                    </Text>
+                    <TouchableOpacity>
+                        <Text style={styles.button}>
+                            Sair
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

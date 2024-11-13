@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, StyleSheet, FlatList, Image } from "react-native"
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native"
 
 const Pets = () => {
     const [img, setImg] = useState('https://via.placeholder.com/130x130')
@@ -33,7 +33,8 @@ const Pets = () => {
                 data={pets}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                <View style={styles.animal}>
+                <TouchableOpacity>
+                    <View style={styles.animal}>
                     <Image source={{uri: img}} style={styles.image}/>
                     <View style={styles.info}>
                         <View>
@@ -43,6 +44,7 @@ const Pets = () => {
                         <Text style={styles.bio}>{item.bio}</Text>
                     </View>
                 </View>
+                </TouchableOpacity>
                 )}
             />
         </View>

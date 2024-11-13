@@ -2,11 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Perfil from './src/screens/Perfil/Perfil';
 import InitialPage from './src/screens/InitialPage/InitialPage';
+import PerfilPet from './src/screens/PerfilPet/PerfilPet';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <InitialPage />
+      <Perfil />
       <StatusBar style="auto" />
     </View>
   );
