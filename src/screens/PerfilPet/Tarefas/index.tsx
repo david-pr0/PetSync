@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native"
 import * as ImagePicker from "expo-image-picker"
+import { useNavigation } from "@react-navigation/native"
 
 const Tarefas = () => {
+    const navigation = useNavigation()
+    const goToTarefa = () => {
+        navigation.navigate('Tarefa' as never)
+    }
     const [tarefa, setTarefa] = useState([
         {
             "id_tarefa": 1,
@@ -97,7 +102,7 @@ const Tarefas = () => {
                 data={tarefa}
                 keyExtractor={(item) => item.id_tarefa.toString()}
                 renderItem={({ item }) => (
-                <TouchableOpacity>
+                <TouchableOpacity onPress={goToTarefa}>
                     <View style={styles.tarefa}>
                     <View style={styles.info}>
                         <View>
@@ -192,7 +197,10 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
     },
     container: {
-        flex: 1
+        flex: 1,
+        paddingLeft: 32,
+        paddingRight: 32,
+        backgroundColor: '#fff'
     }
 });
 

@@ -1,24 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import Perfil from './src/screens/Perfil/Perfil';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import InitialPage from './src/screens/InitialPage/InitialPage';
+import Perfil from './src/screens/Perfil/Perfil';
 import PerfilPet from './src/screens/PerfilPet/PerfilPet';
-import Tarefas from './src/screens/Tarefa/ScreenTarefa';
+import Tarefa from './src/screens/Tarefa/ScreenTarefa';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <PerfilPet />
-      <StatusBar style="auto" />
+      <NavigationContainer>
+        <SafeAreaView style={styles.safeArea}>
+          <Stack.Navigator initialRouteName="InitialPage" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="InitialPage" component={InitialPage} />
+            <Stack.Screen name="Perfil" component={Perfil} />
+            <Stack.Screen name="PerfilPet" component={PerfilPet} />
+            <Stack.Screen name="Tarefa" component={Tarefa} />
+          </Stack.Navigator>
+          <StatusBar style="auto" />
+        </SafeAreaView>
+      </NavigationContainer>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 32,
-    paddingTop: 50,
+  },
+  container: {
+    flex: 1,
+    paddingTop: 32
   },
 });

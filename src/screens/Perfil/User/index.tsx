@@ -59,6 +59,9 @@ const User = () => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
+        paddingLeft: 32,
+        paddingRight: 32,
+        backgroundColor: '#fff'
     },
     perfilInformations: {
         justifyContent: 'space-between',

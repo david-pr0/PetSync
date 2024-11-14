@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native"
+import { useNavigation } from '@react-navigation/native'
 
 const Main = () => {
+    const navigation = useNavigation()
+
+    const goToPerfilPet = () => {
+        navigation.navigate('PerfilPet' as never)
+    }
     const [pets, setPets] = useState([
         {
             id_animal: 1,
@@ -32,7 +38,7 @@ const Main = () => {
                 data={pets}
                 keyExtractor={(item) => item.id_animal.toString()}
                 renderItem={({ item }) => (
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={goToPerfilPet}>
                         <View>
                             <View style={styles.card}>
                                 <Image source={{uri: `data:image/png;base64,${item.foto_animal}`}} style={styles.image}/>
@@ -40,7 +46,7 @@ const Main = () => {
                         </View>
                     </TouchableOpacity>
                     )}
-                    contentContainerStyle={styles.listContainer}
+                    contentContainerStyle={{paddingBottom: 250}}
             />
         </View>
     )
@@ -48,7 +54,8 @@ const Main = () => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 30,
+        padding: 32,
+        backgroundColor: '#fff'
     },
     title: {
         fontSize: 28,

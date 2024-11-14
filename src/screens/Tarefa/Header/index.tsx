@@ -1,13 +1,20 @@
-import { StyleSheet, View, Text, Image } from "react-native"
-
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 
 const Header = () => {
+    const navigation = useNavigation()
+
+    const handleGoBack = () => {
+        navigation.goBack()
+    }
     return (
         <View style={styles.container}>
             <View style={styles.start}>
-                <View>
-                    <Image source={require('../../../../assets/arrow.png')} style={styles.image}/>
-                </View>
+                <TouchableOpacity onPress={handleGoBack}>
+                    <View>
+                        <Image source={require('../../../../assets/arrow.png')} style={styles.image}/>
+                    </View>
+                </TouchableOpacity>
                 <Text style={styles.title}>
                     Tarefa
                 </Text>
@@ -24,7 +31,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingBottom: 26,
+        padding: 32,
+        backgroundColor: '#fff'
     },
     start: {
         flexDirection: 'row',
