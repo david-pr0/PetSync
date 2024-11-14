@@ -28,13 +28,13 @@ const LoginScreen = () => {
             <Text style={styles.welcomeText}>Bem-vindo(a) ao PetSync</Text>
             <TextInput
                 style={styles.input}
-                placeholder="Nome:"
+                placeholder="Email:"
                 value={name}
                 onChangeText={setName}
             />
             <TextInput
                 style={styles.input}
-                placeholder="Senha"
+                placeholder="Senha:"
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry

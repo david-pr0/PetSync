@@ -45,20 +45,20 @@ const RegisterPage = () => {
             <View style={styles.form}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Nome"
+                    placeholder="Nome:"
                     value={name}
                     onChangeText={setName}
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Email"
+                    placeholder="Email:"
                     value={email}
                     onChangeText={setEmail}
                     keyboardType="email-address"
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Senha"
+                    placeholder="Senha:"
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry
