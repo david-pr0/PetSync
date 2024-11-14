@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { View, Image, Text, StyleSheet, Button, TouchableOpacity } from "react-native"
+import * as ImagePicker from "expo-image-picker"
 
 const User = () => {
     const [user, setUser] = useState(
@@ -16,10 +17,28 @@ const User = () => {
             setImg(user.imagem)
         }, [user]
     )
+    const [newImg, setNewImg] = useState('')
+
+    const handleImagePicker = async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+            aspect: [4,4],
+            allowsEditing: true,
+            base64: true,
+            quality: 1,
+        })
+        if (!result.canceled) {
+            setNewImg(result.assets[0].uri)
+        }
+    }
 
     return (
         <View style={styles.container}>
-            <Image source={{uri: `data:image/png;base64,${img}`}} style={styles.image}/>
+            <TouchableOpacity onPress={handleImagePicker}>
+                {
+                    newImg ? <Image source={{uri: newImg}} style={styles.image}/> :
+                    <Image source={{uri: `data:image/png;base64,${img}`}} style={styles.image}/>
+                }
+            </TouchableOpacity>
             <View style={styles.perfilInformations}>
                 <View>
                     <Text style={styles.name}>{user.nome_usuario}</Text>

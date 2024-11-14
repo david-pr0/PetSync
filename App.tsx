@@ -8,7 +8,7 @@ import Tarefas from './src/screens/Tarefa/ScreenTarefa';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Tarefas />
+      <PerfilPet />
       <StatusBar style="auto" />
     </View>
   );

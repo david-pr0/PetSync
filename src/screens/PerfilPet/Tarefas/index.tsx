@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList, Image, ScrollView, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native"
+import * as ImagePicker from "expo-image-picker"
 
 const Tarefas = () => {
     const [tarefa, setTarefa] = useState([
@@ -59,12 +60,27 @@ const Tarefas = () => {
             setImg(pet.foto_animal)
         }
     )
+    const [newImg, setNewImg] = useState('')
+    const handleImagePicker = async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+            aspect: [4,4],
+            allowsEditing: true,
+            base64: true,
+            quality: 1,
+        })
+        if (!result.canceled) {
+            setNewImg(result.assets[0].uri)
+        }
+    }
     return (
         <View style={styles.container}>
             <View style={styles.flex}>
                 <View style={styles.petinfo}>
-                    <TouchableOpacity>
-                        <Image source={{uri: `data:image/png;base64,${img}`}} style={styles.image}/>
+                    <TouchableOpacity onPress={handleImagePicker}>
+                        {
+                            newImg ? <Image source={{uri: newImg}} style={styles.image}/> :
+                            <Image source={{uri: `data:image/png;base64,${img}`}} style={styles.image}/>
+                        }
                     </TouchableOpacity>
                     <View>
                         <Text style={styles.nome}>Nome: {pet.nome_animal}</Text>
