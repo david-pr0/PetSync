@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 
 const Tarefas = () => {
+    const navigation = useNavigation()
+    const handleGoBack = () => {
+        navigation.goBack()
+    }
     const [tarefa, setTarefa] = useState(
         {
             "id_tarefa": 1,
@@ -30,6 +35,25 @@ const Tarefas = () => {
             "id_animal": 1
         }
     ])
+    const concluirTarefa = () => {
+        setTarefa(prevTarefa => ({
+            ...prevTarefa,
+            conclusao: "concluído"
+        }))
+    }
+    const tornarTarefaPendente = () => {
+        setTarefa(prevTarefa => ({
+            ...prevTarefa,
+            conclusao: "pendente"
+        }))
+    }
+    const alterarConclusao = () => {
+        if (tarefa.conclusao === 'pendente') {
+            concluirTarefa()
+        } else {
+            tornarTarefaPendente()
+        }
+    }
     return (
         <View style={styles.container}>
             <View style={styles.flex}>
@@ -44,10 +68,10 @@ const Tarefas = () => {
                         }
                     </View>
                     <View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={alterarConclusao}>
                                 <Text style={styles.concluir}>Concluir</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={handleGoBack}>
                                 <Text style={styles.excluir}>Excluir</Text>
                             </TouchableOpacity>
                     </View>
