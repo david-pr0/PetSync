@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react"
 import { View, Image, Text, StyleSheet, Button, TouchableOpacity } from "react-native"
 import * as ImagePicker from "expo-image-picker"
+import { useNavigation } from "@react-navigation/native"
 
 const User = () => {
+    const navigation = useNavigation()
+    const logout = () => {
+        navigation.navigate('Login' as never)
+    }
     const [user, setUser] = useState(
         {
             "nome_usuario": "David",
@@ -45,7 +50,7 @@ const User = () => {
                     <Text style={styles.email}>{user.email}</Text>
                 </View>
                 <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={logout}>
                         <Text style={styles.button}>
                             Sair
                         </Text>
